@@ -1,6 +1,6 @@
 package br.com.pistorio.controllers;
 
-import br.com.pistorio.PersonServices;
+import br.com.pistorio.services.PersonServices;
 import br.com.pistorio.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

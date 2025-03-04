@@ -25,7 +25,6 @@ hs_err_pid*
 replay_pid*
 
 target/
-/src/main/resources/application.properties
 /.idea/*
 
 /node_modules

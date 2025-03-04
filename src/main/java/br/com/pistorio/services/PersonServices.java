@@ -1,4 +1,4 @@
-package br.com.pistorio;
+package br.com.pistorio.services;
 
 import br.com.pistorio.model.Person;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class PersonServices {
 
         List<Person> persons = new ArrayList<>();
 
-        for (int i = 1; i <= 10 ; i++) {
+        for (int i = 1; i <= 10; i++) {
             Person person = mockPerson(i);
             persons.add(person);
         }
