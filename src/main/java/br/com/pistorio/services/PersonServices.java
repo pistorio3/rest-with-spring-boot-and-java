@@ -1,5 +1,6 @@
 package br.com.pistorio.services;
 
+import br.com.pistorio.dto.PersonDTO;
 import br.com.pistorio.exception.ResourceNotFoundException;
 import br.com.pistorio.model.Person;
 import br.com.pistorio.repository.PersonRepository;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import static br.com.pistorio.mapper.ObjectMapper.parseListObjects;
+import static br.com.pistorio.mapper.ObjectMapper.parseObject;
+
 @Service
 public class PersonServices {
     private final AtomicLong counter = new AtomicLong();
@@ -19,25 +23,27 @@ public class PersonServices {
     @Autowired
     PersonRepository personRepository;
 
-    public List<Person> findAll() {
+    public List<PersonDTO> findAll() {
         logger.info("Finding all Person!");
 
-        return personRepository.findAll();
+        return parseListObjects(personRepository.findAll(), PersonDTO.class);
     }
 
-    public Person findById(Long id) {
+    public PersonDTO findById(Long id) {
         logger.info("Finding one Person!");
 
-        return personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+        var entity = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+
+        return parseObject(entity, PersonDTO.class);
     }
 
-    public Person create(Person person) {
+    public PersonDTO create(PersonDTO person) {
         logger.info("Create one Person!");
-
-        return personRepository.save(person);
+        var entity = parseObject(person, Person.class);
+        return parseObject(personRepository.save(entity), PersonDTO.class);
     }
 
-    public Person update(Person person) {
+    public PersonDTO update(PersonDTO person) {
         logger.info("Updating one Person!");
 
         Person entity = personRepository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
@@ -47,7 +53,7 @@ public class PersonServices {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return personRepository.save(entity);
+        return parseObject(personRepository.save(entity), PersonDTO.class);
     }
 
     public void delete(Long id) {
