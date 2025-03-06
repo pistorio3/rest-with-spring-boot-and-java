@@ -28,7 +28,7 @@ public class Person implements Serializable {
     private String lastName;
 
     @Column(name = "birthday", nullable = true, length = 50)
-    private Date birthDay;
+    private String birthDay;
 
     @Column(nullable = false, length = 150)
     private String address;

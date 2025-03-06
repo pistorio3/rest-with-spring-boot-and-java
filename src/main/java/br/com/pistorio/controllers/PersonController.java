@@ -2,7 +2,6 @@ package br.com.pistorio.controllers;
 
 import br.com.pistorio.dto.PersonDTOv1;
 import br.com.pistorio.dto.PersonDTOv2;
-import br.com.pistorio.model.Person;
 import br.com.pistorio.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,7 +22,7 @@ public class PersonController {
     }
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PersonDTOv1> findAll() {
+    public List<PersonDTOv2> findAll() {
         return personService.findAll();
     }
 
@@ -33,7 +32,7 @@ public class PersonController {
     }
 
     @PostMapping(value = "/create/v2", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PersonDTOv2 create(@RequestBody Person person) {
+    public PersonDTOv2 create(@RequestBody PersonDTOv2 person) {
         return personService.createV2(person);
     }
 

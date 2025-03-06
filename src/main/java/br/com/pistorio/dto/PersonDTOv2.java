@@ -17,7 +17,7 @@ public class PersonDTOv2 implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;
-    private Date birthDay;
+    private String birthDay;
     private String address;
     private String gender;
 

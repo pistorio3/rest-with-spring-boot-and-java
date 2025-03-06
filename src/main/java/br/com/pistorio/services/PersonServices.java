@@ -26,10 +26,10 @@ public class PersonServices {
     @Autowired
     PersonMapper personMapper;
 
-    public List<PersonDTOv1> findAll() {
+    public List<PersonDTOv2> findAll() {
         logger.info("Finding all Person!");
 
-        return parseListObjects(personRepository.findAll(), PersonDTOv1.class);
+        return parseListObjects(personRepository.findAll(), PersonDTOv2.class);
     }
 
     public PersonDTOv1 findById(Long id) {
@@ -46,7 +46,7 @@ public class PersonServices {
         return parseObject(personRepository.save(entity), PersonDTOv1.class);
     }
 
-    public PersonDTOv2 createV2(Person person) {
+    public PersonDTOv2 createV2(PersonDTOv2 person) {
         logger.info("Create one Person! v2");
         var entity = personMapper.convertDTOToEntity(person);
         return personMapper.convertEntityToDTO(personRepository.save(entity));
