@@ -1,9 +1,7 @@
 package br.com.pistorio.services;
 
-import br.com.pistorio.dto.PersonDTOv1;
-import br.com.pistorio.dto.PersonDTOv2;
+import br.com.pistorio.dto.PersonDTO;
 import br.com.pistorio.exception.ResourceNotFoundException;
-import br.com.pistorio.mapper.PersonMapper;
 import br.com.pistorio.model.Person;
 import br.com.pistorio.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -23,36 +21,27 @@ public class PersonServices {
     @Autowired
     PersonRepository personRepository;
 
-    @Autowired
-    PersonMapper personMapper;
-
-    public List<PersonDTOv2> findAll() {
+    public List<PersonDTO> findAll() {
         logger.info("Finding all Person!");
 
-        return parseListObjects(personRepository.findAll(), PersonDTOv2.class);
+        return parseListObjects(personRepository.findAll(), PersonDTO.class);
     }
 
-    public PersonDTOv1 findById(Long id) {
+    public PersonDTO findById(Long id) {
         logger.info("Finding one Person!");
 
         var entity = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
 
-        return parseObject(entity, PersonDTOv1.class);
+        return parseObject(entity, PersonDTO.class);
     }
 
-    public PersonDTOv1 create(PersonDTOv1 person) {
+    public PersonDTO create(PersonDTO person) {
         logger.info("Create one Person!");
         var entity = parseObject(person, Person.class);
-        return parseObject(personRepository.save(entity), PersonDTOv1.class);
+        return parseObject(personRepository.save(entity), PersonDTO.class);
     }
 
-    public PersonDTOv2 createV2(PersonDTOv2 person) {
-        logger.info("Create one Person! v2");
-        var entity = personMapper.convertDTOToEntity(person);
-        return personMapper.convertEntityToDTO(personRepository.save(entity));
-    }
-
-    public PersonDTOv1 update(PersonDTOv1 person) {
+    public PersonDTO update(PersonDTO person) {
         logger.info("Updating one Person!");
 
         Person entity = personRepository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
@@ -62,7 +51,7 @@ public class PersonServices {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return parseObject(personRepository.save(entity), PersonDTOv1.class);
+        return parseObject(personRepository.save(entity), PersonDTO.class);
     }
 
     public void delete(Long id) {

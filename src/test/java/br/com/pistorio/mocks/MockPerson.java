@@ -1,6 +1,6 @@
 package br.com.pistorio.mocks;
 
-import br.com.pistorio.dto.PersonDTOv1;
+import br.com.pistorio.dto.PersonDTO;
 import br.com.pistorio.model.Person;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class MockPerson {
         return mockEntity(0);
     }
 
-    public PersonDTOv1 mockDTO() {
+    public PersonDTO mockDTO() {
         return mockDTO(0);
     }
 
@@ -21,8 +21,8 @@ public class MockPerson {
         return persons;
     }
 
-    public List<PersonDTOv1> mockDTOList() {
-        List<PersonDTOv1> persons = new ArrayList<>();
+    public List<PersonDTO> mockDTOList() {
+        List<PersonDTO> persons = new ArrayList<>();
         for (int i = 0; i < 14; i++) { persons.add(mockDTO(i)); }
         return persons;
     }
@@ -37,8 +37,8 @@ public class MockPerson {
         return person;
     }
 
-    public PersonDTOv1 mockDTO(Integer number) {
-        PersonDTOv1 person = new PersonDTOv1();
+    public PersonDTO mockDTO(Integer number) {
+        PersonDTO person = new PersonDTO();
         person.setAddress("Address Test" + number);
         person.setFirstName("First Name Test" + number);
         person.setGender(((number % 2) == 0) ? "Male" : "Female");

@@ -2,6 +2,7 @@ package br.com.pistorio.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serial;
@@ -11,6 +12,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "person")
 public class Person implements Serializable {
     @Serial
@@ -34,10 +36,6 @@ public class Person implements Serializable {
 
     @Column(nullable = false, length = 20)
     private String gender;
-
-    public Person() {
-
-    }
 
     @Override
     public boolean equals(Object o) {
