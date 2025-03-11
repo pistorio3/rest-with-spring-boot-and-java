@@ -29,7 +29,7 @@ target/
 
 /node_modules
 
-*.env
+.env
 
 # SSH Keys
 *.pem
