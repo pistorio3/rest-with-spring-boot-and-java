@@ -29,6 +29,8 @@ target/
 
 /node_modules
 
+*.env
+
 # SSH Keys
 *.pem
 *.ppk
@@ -55,3 +57,4 @@ blog/bin/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 /.metadata/!/src/.env
+!/src/.env
