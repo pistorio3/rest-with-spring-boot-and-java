@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 
 @Getter
@@ -27,7 +26,7 @@ public class Person implements Serializable {
     @Column(name = "last_name", nullable = false, length = 80)
     private String lastName;
 
-    @Column(name = "birthday", nullable = true, length = 50)
+    @Column(name = "birthday", length = 50)
     private String birthDay;
 
     @Column(nullable = false, length = 150)

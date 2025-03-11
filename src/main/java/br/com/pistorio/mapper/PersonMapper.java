@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class PersonMapper {
 
     public PersonDTOv2 convertEntityToDTO(Person person) {
-        PersonDTOv2 dto =new PersonDTOv2();
+        PersonDTOv2 dto = new PersonDTOv2();
 
         dto.setId(person.getId());
         dto.setFirstName(person.getFirstName());
